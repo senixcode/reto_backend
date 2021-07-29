@@ -23,7 +23,8 @@ export default {
         new: true,
         runValidators:true
       });
-      res.status(200).json(userUpdated);
+      const user = await User.findById(userUpdated._id);
+      res.status(200).json(user);
     } catch (error) {
       res.status(400).json({ error });
     }
