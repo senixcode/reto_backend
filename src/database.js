@@ -1,6 +1,6 @@
 import mongosse from 'mongoose'
-
-mongosse.connect('mongodb://localhost/molichamb',{
+const MONGODB_URI = process.env.MONGODB_URI
+mongosse.connect(MONGODB_URI,{
   useNewUrlParser:true,
   useUnifiedTopology: true,
   useFindAndModify:false,
