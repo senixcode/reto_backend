@@ -1,4 +1,4 @@
 import app from './app'
 import './database'
-app.listen(5000 )
-console.log('Server listen on port', 5000)
+app.listen(app.get('port'))
+console.log('Server listen on port', app.get('port'))
