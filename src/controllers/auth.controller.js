@@ -1,9 +1,6 @@
 import User from "../models/User";
 import { generateToken } from "../libs/auth";
-const username = (user) => {
-  const {_id, names, lastName, email} = user
-  return {_id, names, lastName, email}
-}
+
 export default {
   signUp: async (req, res) => {
     try {
@@ -13,7 +10,7 @@ export default {
         password: await User.encryptPassword(password),
       });
       const savedUser = await newUser.save();
-      res.json({ username: username(savedUser), token: generateToken(savedUser) });
+      res.json({ username: savedUser, token: generateToken(savedUser) });
     } catch (e) {
       res.status(400).json({ error: e });
     }
@@ -33,7 +30,7 @@ export default {
      console.log("aqui",matchPassword);
       res.status(200).json({
         token: generateToken(userFound) ,
-        username: username(userFound),
+        username: userFound,
       });
     } catch(e){
        res.status(400).json({ error: e });
